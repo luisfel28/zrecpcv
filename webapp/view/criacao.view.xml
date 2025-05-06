@@ -68,8 +68,23 @@
                                 <t:Column width="14rem" >
 									<Text text="Preço Unidade"/>
                                     <t:template>
-                                        <Label text="{Unitprice}" />
-                                        <!-- <Label text="[{ path: 'Unitprice', type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }]" />  -->
+                                        <!-- <Label text="{Unitprice}" /> 
+                                        <Label text="{ 
+                                        parts:  [   'Unitprice',
+                                                    'Condcurr'
+                                                ],
+                                            type: 'CurrencyType',
+                                            formatOptions: {showMeasure: false, decimalSeparator: ',', groupingSeparator: '.'}
+                                        }"
+                                        
+                                         />-->
+                                         <ObjectNumber
+                                            number="{
+                                                parts:[{path:'Unitprice'},{path:'Condcurr'}],
+                                                type: 'sap.ui.model.type.Currency',
+                                                formatOptions: {showMeasure: false}
+                                            }"
+                                            unit="{Condcurr}" />
                                     </t:template>
 								</t:Column>                                                                                                                  
 	                        </t:columns>
