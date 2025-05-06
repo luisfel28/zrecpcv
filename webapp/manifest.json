@@ -76,7 +76,12 @@
         "dataSource": "mainService",
         "preload": true,
         "settings": {}
-      }
+      },
+      "main": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }      
     },
     "resources": {
       "css": [
@@ -102,7 +107,12 @@
           "target": [
             "Targetcontratos"
           ]
-        }
+        },
+        {
+          "name": "Routecriacao",
+          "pattern": "criacao/{bukrs}/{recnnr}",
+          "target": "TargetCriacao"
+        }  
       ],
       "targets": {
         "Targetcontratos": {
@@ -111,7 +121,14 @@
           "clearControlAggregation": false,
           "viewId": "contratos",
           "viewName": "contratos"
-        }
+        },
+        "TargetCriacao": {
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "criacao",
+          "viewName": "criacao",
+          "viewLevel": 2
+        }     
       }
     },
     "rootView": {

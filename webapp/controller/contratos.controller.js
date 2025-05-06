@@ -11,12 +11,21 @@ function (Controller, MessageToast) {
 
         },
 
-        onCreateCont: function () {
+        onCreateCont: function (evt) {
 
             var vTblContratos = this.getView().byId("TabCont");
 
             if ( vTblContratos.getSelectedIndex() > 0 )
             {
+                var vIndex = vTblContratos.getSelectedIndex();
+                                
+                var aDadosContrato = {
+                    "bukrs" : vTblContratos.getContextByIndex(vIndex).getObject().bukrs,
+                    "recnnr" :  vTblContratos.getContextByIndex(vIndex).getObject().recnnr
+                };
+
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this); 
+                oRouter.navTo("Routecriacao", aDadosContrato);
 
             }
             else

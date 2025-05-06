@@ -1,0 +1,86 @@
+<mvc:View controllerName="fidelidademundial.com.zrecpcv.controller.criacao"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns="sap.m">
+    <Page id="pagecri" title="{i18n>title}">
+        <content>
+            <HBox>
+                <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
+                    <Label id="lblTitBukrs" labelFor="lblBukrs" text="Empresa" ></Label>
+                    <Label id="lblBukrs" design="Bold" labelFor="" ></Label>
+                </VBox>                  
+            </HBox>                        
+            <HBox>
+                <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
+                    <Label id="lblTitRecnnr" labelFor="lblRecnnr" text="Contrato Reserva" ></Label>
+                    <Label id="lblRecnnr" design="Bold"></Label>
+                </VBox>                  
+            </HBox>               
+            <HBox>
+                <VBox class="sapUiMediumMarginBegin " id="pnlCreate" visible="true">
+                        <t:Table class="sapUiMediumMarginTop" enableSelectAll="false" enableBusyIndicator="true" alternateRowColors="true" selectionMode="None" 
+                        showNoData="false" id="TabConditions" selectionBehavior="RowOnly"
+                            rows="{ path:'/results', sorter: { path: 'Condtype' } }">
+							<t:extension>
+                                <OverflowToolbar style="Clear">
+                                    <Title id="TabCreateListTitle" text="Condições Prévias" titleStyle="H3" level="H3"/>
+                                </OverflowToolbar>
+                            </t:extension>
+                            <t:columns>
+                                <t:Column width="12rem" >
+									<Text text="Objeto"/>
+                                    <t:template>
+                                        <Label text="{Objnr}" design="Bold" />
+                                    </t:template>
+								</t:Column>
+                                <t:Column width="6rem" >
+									<Text text="Tipo"/>
+                                    <t:template>
+                                        <Label text="{Condtype}" />
+                                    </t:template>
+								</t:Column>
+                                <t:Column width="14rem" >
+									<Text text="Objet.condições"/>
+                                     <t:template>
+                                        <Select id="CboObjCond" 
+                                            showSecondaryValues= "true"
+                                            selectedKey="{Condpurposeext}" 
+                                            items="{ path: 'main>/ZreShObjCondSet', sorter: { path: 'main>Condpurposeext' } }" >
+                                            <core:ListItem text="{main>Xmcondpurposeext}" key="{main>Condpurposeext}" additionalText="{main>Condpurposeext}"/>
+                                        </Select>                                                                
+                                    </t:template> 
+								</t:Column>         
+                                <t:Column width="14rem" >
+									<Text text="Válido Desde"/>
+                                     <t:template>
+                                    <DatePicker
+                                        id="lblDateFrom"
+                                        value="{
+                                            'path': 'Condvalidfrom',
+                                            'type': 'sap.ui.model.type.Date',
+                                            'formatOptions': {
+                                                'pattern': 'dd/MM/y'
+                                            }
+                                        }"/>
+                                    </t:template>
+								</t:Column>         
+                                <t:Column width="14rem" >
+									<Text text="Preço Unidade"/>
+                                    <t:template>
+                                        <Label text="{Unitprice}" />
+                                        <!-- <Label text="[{ path: 'Unitprice', type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }]" />  -->
+                                    </t:template>
+								</t:Column>                                                                                                                  
+	                        </t:columns>
+						</t:Table>          
+                </VBox>
+            </HBox>                
+        </content>                    
+        <footer>
+			<Toolbar>
+				<Button text="Criar Contrato de Venda" type="Attention" width="250px" icon="sap-icon://SAP-icons-TNT/data" press="onCreateContCPCV" class="sapUiSmallMarginBegin"></Button>
+			</Toolbar>
+		</footer>
+    </Page>
+</mvc:View>

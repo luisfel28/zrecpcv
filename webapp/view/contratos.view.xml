@@ -12,7 +12,7 @@
                             <MultiComboBox
                             selectionChange="handleCompanyChange"
                             class="sapUiSmallMarginEnd"
-                            width="150px"
+                            width="200px"
                             showSecondaryValues= "true"
                             selectedKeys="FS01,FIIS"
                             items="{
@@ -50,7 +50,7 @@
             <HBox>
                 <VBox class="sapUiMediumMarginBegin " id="pnlCont" visible="true">
                         <t:Table class="sapUiMediumMarginTop" enableColumnFreeze="true" enableSelectAll="false" fixedColumnCount="3" enableBusyIndicator="true" visibleRowCount="16" alternateRowColors="true" selectionMode="Single" 
-                        showNoData="false" id="TabCont" 
+                        showNoData="false" id="TabCont" selectionBehavior="RowOnly"
                             rows="{ path:'/ZI_CONTRATOS_RESERVAS', events: { change: '.onChangeTabCont' } }">
 							<t:extension>
                                 <OverflowToolbar style="Clear">
