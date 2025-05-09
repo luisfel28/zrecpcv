@@ -8,5 +8,5 @@
         "abap_package": "ZRE_CONTRATOS_CPCV",
         "abap_bsp": "ZRE_CPCV",
         "abap_transport": "REDK907579",
-        "abap_bsp_text": "Controle Contratos de Venda CPCV"
+        "abap_bsp_text": "Criar Reserva -> CPCV"
     }
