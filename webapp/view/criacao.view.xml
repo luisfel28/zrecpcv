@@ -29,9 +29,9 @@
                             </t:extension>
                             <t:columns>
                                 <t:Column width="12rem" >
-									<Text text="Objeto"/>
+									<Text text="Objeto de Cálculo"/>
                                     <t:template>
-                                        <Label text="{Objnr}" design="Bold" />
+                                        <Label text="{Objnrcalc}" design="Bold" />
                                     </t:template>
 								</t:Column>
                                 <t:Column width="6rem" >

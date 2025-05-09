@@ -14,10 +14,10 @@
                             class="sapUiSmallMarginEnd"
                             width="200px"
                             showSecondaryValues= "true"
-                            selectedKeys="FS01,FIIS"
                             items="{
                                 path: '/I_CompanyCode',
-                                sorter: { path: 'CompanyCode' }
+                                sorter: { path: 'CompanyCode' },
+                                length : 9999
                             }">
                         <core:ListItem key="{CompanyCode}" text="{CompanyCode}" additionalText="{CompanyCodeName}"/>
                         </MultiComboBox>
@@ -27,18 +27,33 @@
                     <Label text="Contrato Reserva" />
                     <FlexBox alignItems="Center" justifyContent="Start">
                             <MultiComboBox
-                            selectionChange="handleCompanyChange"
+                            selectionChange="handleContResChange"
                             class="sapUiSmallMarginEnd"
                             width="200px"
                             showSecondaryValues= "true"
                             items="{
                                 path: '/ZI_CONTRATOS_RESERVAS',
-                                sorter: { path: 'recnnr' }
+                                sorter: { path: 'recnnr' },
+                                length : 9999
                             }">
                         <core:ListItem key="{recnnr}" text="{recnnr}" />
                         </MultiComboBox>
                     </FlexBox>
-                </VBox>              
+                </VBox>        
+                <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+                    <HBox >
+                        <VBox class="sapUiSmallMarginBegin">
+                            <Label text="Status"  class="sapUiSmallMarginEnd" />
+                            <FlexBox alignItems="Center" justifyContent="Start">
+                                <RadioButtonGroup id="rbgSTATUS" class="sapUiSmallMarginEnd" valueState="Information">
+                                    <RadioButton id="rbgSTATUSTDS"  text="Todos" />
+                                    <RadioButton id="rbgSTATUSOK"   text="OK" />
+                                    <RadioButton id="rbgSTATUSPE"   text="Pendentes" />
+                                </RadioButtonGroup>
+                            </FlexBox>
+                        </VBox>
+                    </HBox>
+                </VBox>                      
                 <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTop" >
                     <HBox>
                         <VBox>
@@ -51,7 +66,10 @@
                 <VBox class="sapUiMediumMarginBegin " id="pnlCont" visible="true">
                         <t:Table class="sapUiMediumMarginTop" enableColumnFreeze="true" enableSelectAll="false" fixedColumnCount="3" enableBusyIndicator="true" visibleRowCount="16" alternateRowColors="true" selectionMode="Single" 
                         showNoData="false" id="TabCont" selectionBehavior="RowOnly"
-                            rows="{ path:'/ZI_CONTRATOS_RESERVAS', events: { change: '.onChangeTabCont' } }">
+                            rows="{ path:'/ZI_CONTRATOS_RESERVAS',
+                                    events: {
+                                        change: '.onContTab'
+                                    } }">
 							<t:extension>
                                 <OverflowToolbar style="Clear">
                                     <Title id="TabContListTitle" text="Contratos" titleStyle="H3" level="H3"/>
@@ -60,6 +78,15 @@
                                 </OverflowToolbar>
                             </t:extension>
                             <t:columns>
+                                <t:Column width="10rem" hAlign="Center" >
+									<Text text="Status"/>
+                                    <t:template>
+                                        <ObjectStatus
+                                            icon="{=${recnnrcpcv}!==''?'sap-icon://sys-enter-2':'sap-icon://error'}"
+                                            text="{=${recnnrcpcv}!==''?'OK':'Pendente'}"
+                                            state="{=${recnnrcpcv}!==''?'Success':'Error'}" />
+                                    </t:template>
+								</t:Column>
                                 <t:Column width="6rem" >
 									<Text text="Empresa"/>
                                     <t:template>
@@ -69,19 +96,64 @@
                                 <t:Column width="14rem" >
 									<Text text="Contrato Reserva"/>
                                     <t:template>
-                                        <Label text="{recnnr}" />
+                                        <Link text="{recnnr}" press="handleContract" target="_blank"/>
                                     </t:template>
 								</t:Column>
                                 <t:Column width="14rem" >
 									<Text text="Contrato Venda"/>
                                     <t:template>
-                                        <Label text="{recnnrcpcv}" />
+                                        <Link text="{recnnrcpcv}" press="handleContract" target="_blank"/>
                                     </t:template>
 								</t:Column>                                                                
+                                <t:Column width="14rem" >
+									<Text text="Criado por"/>
+                                    <t:template>
+                                        <Label text="{created_by}" />
+                                    </t:template>
+								</t:Column>                                                                
+                                <t:Column width="14rem" >
+									<Text text="Criado em"/>
+                                    <t:template>
+                                        <Label text="{ path: 'created_at', type: 'sap.ui.model.odata.type.DateTime' }" />
+                                    </t:template>
+								</t:Column>                                                                                                                                
 	                        </t:columns>
 						</t:Table>                            
                 </VBox>
             </HBox>
+            <HBox>
+                <VBox class="sapUiMediumMarginBegin  sapUiSmallMarginTop" id="pnlProgress" visible="true">
+                    <HBox>
+                        <VBox>
+                            <Label text="Contr. Vendas / Contr. Reservas" design="Bold" ></Label>
+                        </VBox>
+                        <VBox>
+                            <ProgressIndicator
+                                id="ProgIndicator"
+                                class="sapUiMediumMarginBegin sapUiSmallMarginBottom"
+                                width="400px"
+                                height="20px"
+                                showValue="true"
+                                state="Success"
+                                displayOnly="true"
+                                />
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </HBox>
         </content>                    
+        <footer>
+            <OverflowToolbar >
+                <MessageStrip
+                    id="MsgConfirmation"
+                    visible="false"
+                    type="Success"
+                    enableFormattedText="true"
+                    showIcon="true"
+                    showCloseButton="true"
+                >
+                </MessageStrip>            
+            </OverflowToolbar>
+        </footer>
     </Page>
 </mvc:View>

@@ -12,7 +12,6 @@ function (Controller, MessageToast) {
     return Controller.extend("fidelidademundial.com.zrecpcv.controller.criacao", {
         
         onInit: function () {
-            //this.getRouter().getRoute("Routecriacao").attachPatternMatched(this._onObjectMatched, this);
             this.getOwnerComponent().getRouter().getRoute("Routecriacao").attachPatternMatched(this._onObjectMatched, this);
         },
 
@@ -41,7 +40,6 @@ function (Controller, MessageToast) {
             }
             );
             
-
             var vLblBukrs = this.getView().byId("lblBukrs");
             vLblBukrs.setText(sBukrs);
 
@@ -59,7 +57,73 @@ function (Controller, MessageToast) {
             oTable.setModel(oModel);
             Filtro = [];
 
-        }   
+        },   
+
+        onCreateContCPCV: function () {
+
+            var oModel  = this.getView().getModel();
+
+            var vTabConditions = this.getView().byId("TabConditions");
+
+            var oContratoCPCV       = [],
+                oConditionsCPCV     = [];
+
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);                 
+
+            for (var vCont = 0; vCont < vTabConditions._iBindingLength; vCont++ )
+            {
+                               
+                // CONDIÇÕES CONTRATO CPCV
+                var aDadosConditions = {
+                    "Bukrs" : vTabConditions.getContextByIndex(vCont).getObject().Bukrs,
+                    "Recnnr" :  vTabConditions.getContextByIndex(vCont).getObject().Recnnr,
+                    "Condtype" :  vTabConditions.getContextByIndex(vCont).getObject().Condtype, 
+                    "Condvalidfrom" :  vTabConditions.getContextByIndex(vCont).getObject().Condvalidfrom,
+                    "Condpurposeext" :  vTabConditions.getContextByIndex(vCont).getObject().Condpurposeext
+                };
+                oConditionsCPCV.push(aDadosConditions);
+
+            }
+
+            // DADOS CONTRATO CPCV
+            var aDadosContrato = {
+                "Bukrs" : sBukrs,
+                "Recnnr" :  sRecnnr,
+                "EntConditionsSet" : oConditionsCPCV
+            };
+
+            oContratoCPCV.push(aDadosContrato);
+                
+            oModel.create("/EntCPCVSet", aDadosContrato, {
+                success: function (odata, oResponse) {
+
+                    var vBukrsContVenda     = oResponse.data.Bukrs;
+                    var vRecnnrContVenda    = oResponse.data.Recnnr;
+
+                     var mSuc = "Contrato de venda " + vBukrsContVenda + "/" + vRecnnrContVenda + " criado com sucesso!";
+/*                    MessageToast.show(mSuc,{
+                        duration: 5000, 
+                        width: "20rem", // default max width supported 
+                    }); */
+
+                    sap.ui.getCore().AppContext.gTabCont.getBinding("rows").refresh();
+
+                    //gConfirmation.setType("Error");
+                    sap.ui.getCore().AppContext.gConfirmation.setText(mSuc);
+                    sap.ui.getCore().AppContext.gConfirmation.setProperty("visible", true);
+
+                    oRouter.navTo("Routecontratos");               
+
+                },
+                error: function (oError) {
+                    MessageToast.show(oError.responseText);
+                }
+            } );             
+
+            
+                 
+
+        }
 
     });
 });
