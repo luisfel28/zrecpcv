@@ -6,17 +6,35 @@
     <Page id="pagecri" title="{i18n>title}">
         <content>
             <HBox>
-                <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
-                    <Label id="lblTitBukrs" labelFor="lblBukrs" text="Empresa" ></Label>
-                    <Label id="lblBukrs" design="Bold" labelFor="" ></Label>
+                <VBox>
+                    <HBox>
+                        <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
+                            <Label id="lblTitBukrs" labelFor="lblBukrs" text="Empresa" ></Label>
+                            <Label id="lblBukrs" design="Bold" labelFor="" ></Label>
+                        </VBox>                  
+                    </HBox>                        
+                    <HBox>
+                        <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
+                            <Label id="lblTitRecnnr" labelFor="lblRecnnr" text="Contrato Reserva" ></Label>
+                            <Label id="lblRecnnr" design="Bold"></Label>
+                        </VBox>                  
+                    </HBox>                   
+                </VBox>  
+                <VBox class="sapUiMediumMarginBegin">
+                    <HBox>
+                        <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
+                            <Label id="lblTitRecnTxt" labelFor="lblBukrs" text="Denominação" ></Label>
+                            <Label id="lblRecnTxt" design="Bold" labelFor="" ></Label>
+                        </VBox>                  
+                    </HBox>                        
+                    <HBox>
+                        <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
+                            <Label id="lblTitPartner" labelFor="lblRecnnr" text="Parceiro" ></Label>
+                            <Label id="lblPartner" design="Bold"></Label>
+                        </VBox>                  
+                    </HBox>                   
                 </VBox>                  
-            </HBox>                        
-            <HBox>
-                <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
-                    <Label id="lblTitRecnnr" labelFor="lblRecnnr" text="Contrato Reserva" ></Label>
-                    <Label id="lblRecnnr" design="Bold"></Label>
-                </VBox>                  
-            </HBox>               
+            </HBox> 
             <HBox>
                 <VBox class="sapUiMediumMarginBegin " id="pnlCreate" visible="true">
                         <t:Table class="sapUiMediumMarginTop" enableSelectAll="false" enableBusyIndicator="true" alternateRowColors="true" selectionMode="None" 
@@ -24,7 +42,7 @@
                             rows="{ path:'/results', sorter: { path: 'Condtype' } }">
 							<t:extension>
                                 <OverflowToolbar style="Clear">
-                                    <Title id="TabCreateListTitle" text="Condições Prévias" titleStyle="H3" level="H3"/>
+                                    <Title id="TabCreateListTitle" text="Condições" titleStyle="H3" level="H3"/>
                                 </OverflowToolbar>
                             </t:extension>
                             <t:columns>
@@ -40,8 +58,20 @@
                                         <Label text="{Condtype}" />
                                     </t:template>
 								</t:Column>
+                                <t:Column width="8rem" >
+									<Text text="Objetivo Reserva"/>
+                                    <t:template>
+                                        <Label text="{Condpurposeext}" />
+                                    </t:template>
+								</t:Column>                       
+                                <t:Column width="8rem" >
+									<Text text="Válido Desde Reserva"/>
+                                    <t:template>
+                                        <Label text="{ path: 'Condvalidfrom', type: 'sap.ui.model.odata.type.Date' }" />
+                                    </t:template>
+								</t:Column>                                                                
                                 <t:Column width="14rem" >
-									<Text text="Objet.condições"/>
+									<Text text="Objetivo CPCV"/>
                                      <t:template>
                                         <Select id="CboObjCond" 
                                             showSecondaryValues= "true"
@@ -52,7 +82,7 @@
                                     </t:template> 
 								</t:Column>         
                                 <t:Column width="14rem" >
-									<Text text="Válido Desde"/>
+									<Text text="Válido Desde CPCV"/>
                                      <t:template>
                                     <DatePicker
                                         id="lblDateFrom"

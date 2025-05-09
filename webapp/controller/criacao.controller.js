@@ -5,9 +5,9 @@ sap.ui.define([
 function (Controller, MessageToast) {
     "use strict";
 
-    var Filtro = [];
-    var sBukrs = "";
-    var sRecnnr = "";
+    var Filtro      = [];
+    var sBukrs      = "";
+    var sRecnnr     = "";
 
     return Controller.extend("fidelidademundial.com.zrecpcv.controller.criacao", {
         
@@ -26,6 +26,7 @@ function (Controller, MessageToast) {
             sRecnnr = oEvent.getParameter("arguments").recnnr;  // Contrato Reserva
             Filtro.push(new sap.ui.model.Filter("Recnnr", "EQ",sRecnnr));
 
+           
             oModel.read("/EntConditionsSet", {
                 urlParameters: {
                     "$top": 9999
@@ -45,6 +46,12 @@ function (Controller, MessageToast) {
 
             var vLblRecnnr = this.getView().byId("lblRecnnr");
             vLblRecnnr.setText(sRecnnr);
+
+            var vLblRecnTxt = this.getView().byId("lblRecnTxt");
+            vLblRecnTxt.setText(oEvent.getParameter("arguments").recntxt);
+
+            var vLblPartner = this.getView().byId("lblPartner");
+            vLblPartner.setText(oEvent.getParameter("arguments").partner);            
 
         },
 

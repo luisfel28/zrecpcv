@@ -135,7 +135,9 @@ function (Controller, MessageToast) {
 
                 var aDadosContrato = {
                     "bukrs" : vTblContratos.getContextByIndex(vIndex).getObject().bukrs,
-                    "recnnr" : vTblContratos.getContextByIndex(vIndex).getObject().recnnr
+                    "recnnr" : vTblContratos.getContextByIndex(vIndex).getObject().recnnr,
+                    "recntxt" : vTblContratos.getContextByIndex(vIndex).getObject().recntxt,
+                    "partner" : vTblContratos.getContextByIndex(vIndex).getObject().partner
                 };
 
                 vMsgConfirmation.setProperty("visible", true);

@@ -64,7 +64,7 @@
             </HBox>                                                        
             <HBox>
                 <VBox class="sapUiMediumMarginBegin " id="pnlCont" visible="true">
-                        <t:Table class="sapUiMediumMarginTop" enableColumnFreeze="true" enableSelectAll="false" fixedColumnCount="4" enableBusyIndicator="true" visibleRowCount="15" alternateRowColors="true" selectionMode="Single" 
+                        <t:Table class="sapUiMediumMarginTop" enableColumnFreeze="true" enableSelectAll="false" fixedColumnCount="3" enableBusyIndicator="true" visibleRowCount="15" alternateRowColors="true" selectionMode="Single" 
                         showNoData="false" id="TabCont" selectionBehavior="RowOnly"
                             rows="{ path:'/ZI_CONTRATOS_RESERVAS',
                                     events: {
@@ -93,13 +93,37 @@
                                         <Label text="{bukrs}" design="Bold" />
                                     </t:template>
 								</t:Column>
-                                <t:Column width="14rem" sortProperty="recnnr">
+                                <t:Column width="10rem" sortProperty="recnnr">
 									<Text text="Contrato Reserva"/>
                                     <t:template>
                                         <Link text="{recnnr}" press="handleContract" target="_blank"/>
                                     </t:template>
 								</t:Column>
-                                <t:Column width="14rem" sortProperty="recnnrcpcv">
+                                <t:Column width="18rem">
+									<Text text="Denominação"/>
+                                    <t:template>
+                                        <Label text="{recntxt}" />
+                                    </t:template>
+								</t:Column>                              
+                                <t:Column width="8rem" sortProperty="recnbeg">
+									<Text text="Início Contrato"/>
+                                    <t:template>
+                                        <Label text="{ path: 'recnbeg', type: 'sap.ui.model.odata.type.Date' }" />
+                                    </t:template>
+								</t:Column>                     
+                                <t:Column width="8rem" sortProperty="recnend1st">
+									<Text text="Fim Contrato"/>
+                                    <t:template>
+                                        <Label text="{ path: 'recnend1st', type: 'sap.ui.model.odata.type.Date' }" />                                        
+                                    </t:template>
+								</t:Column>                                                                                 
+                                <t:Column width="10rem" sortProperty="partner">
+									<Text text="Parceiro"/>
+                                    <t:template>
+                                        <Label text="{partner}" />
+                                    </t:template>
+								</t:Column>                                                                
+                                <t:Column width="10rem" sortProperty="recnnrcpcv">
 									<Text text="Contrato Venda"/>
                                     <t:template>
                                         <Link text="{recnnrcpcv}" press="handleContract" target="_blank"/>
