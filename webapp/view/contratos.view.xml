@@ -64,7 +64,7 @@
             </HBox>                                                        
             <HBox>
                 <VBox class="sapUiMediumMarginBegin " id="pnlCont" visible="true">
-                        <t:Table class="sapUiMediumMarginTop" enableColumnFreeze="true" enableSelectAll="false" fixedColumnCount="3" enableBusyIndicator="true" visibleRowCount="16" alternateRowColors="true" selectionMode="Single" 
+                        <t:Table class="sapUiMediumMarginTop" enableColumnFreeze="true" enableSelectAll="false" fixedColumnCount="4" enableBusyIndicator="true" visibleRowCount="15" alternateRowColors="true" selectionMode="Single" 
                         showNoData="false" id="TabCont" selectionBehavior="RowOnly"
                             rows="{ path:'/ZI_CONTRATOS_RESERVAS',
                                     events: {
@@ -87,19 +87,19 @@
                                             state="{=${recnnrcpcv}!==''?'Success':'Error'}" />
                                     </t:template>
 								</t:Column>
-                                <t:Column width="6rem" >
+                                <t:Column width="6rem" sortProperty="bukrs">
 									<Text text="Empresa"/>
                                     <t:template>
                                         <Label text="{bukrs}" design="Bold" />
                                     </t:template>
 								</t:Column>
-                                <t:Column width="14rem" >
+                                <t:Column width="14rem" sortProperty="recnnr">
 									<Text text="Contrato Reserva"/>
                                     <t:template>
                                         <Link text="{recnnr}" press="handleContract" target="_blank"/>
                                     </t:template>
 								</t:Column>
-                                <t:Column width="14rem" >
+                                <t:Column width="14rem" sortProperty="recnnrcpcv">
 									<Text text="Contrato Venda"/>
                                     <t:template>
                                         <Link text="{recnnrcpcv}" press="handleContract" target="_blank"/>
