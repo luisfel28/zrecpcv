@@ -53,7 +53,7 @@ function (Controller, MessageToast) {
 
             oModel.read("/EntCPCVSet(Bukrs='"+sBukrs+"',Recnnr='"+sRecnnr+"')", {
                 success: function (oDataCont, oResponseCont) {
-                    this.WriteDataCabec(oResponseCont);
+                    this.WriteDataCabec(oDataCont, oResponseCont);
                 }.bind(this),
                 error: function (err) {
                     
@@ -66,7 +66,7 @@ function (Controller, MessageToast) {
 
         WriteData: function (results) {
 
-            var oTable      = this.getView().byId("TabConditions");
+            var oTable = this.getView().byId("TabConditions");
             var oModel = new sap.ui.model.json.JSONModel();
 
             oModel.setData(results);
@@ -75,7 +75,14 @@ function (Controller, MessageToast) {
 
         },   
 
-        WriteDataCabec: function (oresponse) {
+        WriteDataCabec: function (odata,oresponse) {
+
+            var oModel = new sap.ui.model.json.JSONModel();
+            oModel.setData(odata);
+
+            var oView = this.getView();
+            oView.setModel(oModel, "dadoscabec");
+            
 
             var vRecnTxt    = oresponse.data.Recntxt,
             vDtIni          , 
@@ -94,7 +101,7 @@ function (Controller, MessageToast) {
             });
 
             /// INÍCIO CONTRATO
-            var vLblDtIni = this.getView().byId("lblTitDtIni");
+/*             var vLblDtIni = this.getView().byId("lblTitDtIni");
             vDtIni = new Date(oresponse.data.Recnbeg);
 
             if ( oresponse.data.Recnbeg != null )
@@ -103,11 +110,11 @@ function (Controller, MessageToast) {
 
                 var vTxtDtIni = this.getView().byId("TxtDtIni");
                 vTxtDtIni.setDateValue(vDtIni);   
-                vTxtDtIni.setDisplayFormat("dd/MM/yyyy"); 
-            }            
+                vTxtDtIni.setDisplayFormat("d/MM/y"); 
+            }    */         
 
-               /// FIM CONTRATO                
-            var vLblDtFim = this.getView().byId("lblTitDtFim");
+            /// FIM CONTRATO                
+/*             var vLblDtFim = this.getView().byId("lblTitDtFim");
             vDtFim = new Date(oresponse.data.Recnend1st);            
 
             if ( oresponse.data.Recnend1st != null )
@@ -117,9 +124,9 @@ function (Controller, MessageToast) {
 
                 var vTxtDtFim = this.getView().byId("TxtDtFim");
                 vTxtDtFim.setDateValue(vDtFim);                        
-                vTxtDtFim.setDisplayFormat("dd/MM/yyyy");     
+                vTxtDtFim.setDisplayFormat("d/MM/y");     
 
-            }
+            } */
 
         },   
 
@@ -153,10 +160,7 @@ function (Controller, MessageToast) {
             }
 
             var vDtIni = new Date(vTxtDtIni.getDateValue());
-            //vDtIni.setDate(vDtIni.getDate() + 1);
-            
             var vDtFim = new Date(vTxtDtFim.getDateValue());               
-            //vDtFim.setDate(vDtFim.getDate() + 1);
 
             // DADOS CONTRATO CPCV
             var aDadosContrato = {

@@ -41,7 +41,14 @@
                     <HBox>
                         <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
                             <Label id="lblTitDtIni" labelFor="lblBukrs" text="Início Contrato" ></Label>
-                            <DatePicker id="TxtDtIni" displayFormat="d/MM/y" />
+                            <DatePicker id="TxtDtIni" value="{
+                                            'path': 'dadoscabec>/Recnbeg',
+                                            'type': 'sap.ui.model.type.Date',
+                                            'formatOptions': {
+                                                'pattern': 'dd.MM.yyyy',
+                                                'UTC': true
+                                            }
+                                        }" placeholder=" " />
                         </VBox>                  
                     </HBox>                        
                 </VBox>                                  
@@ -49,7 +56,14 @@
                     <HBox>
                         <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
                             <Label id="lblTitDtFim" labelFor="lblRecnnr" text="Fim Contrato" ></Label>
-                            <DatePicker id="TxtDtFim" displayFormat="d/MM/y" />
+                            <DatePicker id="TxtDtFim" value="{
+                                            'path': 'dadoscabec>/Recnend1st',
+                                            'type': 'sap.ui.model.type.Date',
+                                            'formatOptions': {
+                                                'pattern': 'dd.MM.yyyy',
+                                                'UTC': true
+                                            }
+                                        }" placeholder=" " />
                         </VBox>                  
                     </HBox>                   
                 </VBox>                                          
