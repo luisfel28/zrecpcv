@@ -123,7 +123,8 @@ function (Controller, MessageToast) {
         onCreateCont: function (evt) {
 
             var vTblContratos       = this.getView().byId("TabCont"),
-                vMsgConfirmation    = this.getView().byId("MsgConfirmation");
+                vMsgConfirmation    = this.getView().byId("MsgConfirmation"),
+                vRecnTxt            = "-";
 
             if ( vTblContratos.getSelectedIndex() != -1 )
             {
@@ -133,14 +134,11 @@ function (Controller, MessageToast) {
                 if ( vTblContratos.getContextByIndex(vIndex).getObject().recnnrcpcv == "" )
                 {
 
-                var aDadosContrato = {
-                    "bukrs" : vTblContratos.getContextByIndex(vIndex).getObject().bukrs,
-                    "recnnr" : vTblContratos.getContextByIndex(vIndex).getObject().recnnr,
-                    "recntxt" : vTblContratos.getContextByIndex(vIndex).getObject().recntxt,
-                    "partner" : vTblContratos.getContextByIndex(vIndex).getObject().partner
-                };
-
-                vMsgConfirmation.setProperty("visible", true);
+                    var aDadosContrato = {
+                        "bukrs" : vTblContratos.getContextByIndex(vIndex).getObject().bukrs,
+                        "recnnr" : vTblContratos.getContextByIndex(vIndex).getObject().recnnr,
+                        "partner" : vTblContratos.getContextByIndex(vIndex).getObject().partner
+                    };
 
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this); 
                 oRouter.navTo("Routecriacao", aDadosContrato);
@@ -186,6 +184,8 @@ function (Controller, MessageToast) {
                 var vPercValue = vCPCV * 100 / vCountRegs;
                 vProgIndicator.setPercentValue(vPercValue);
                 
+                vPercValue = vPercValue.toFixed(2);
+                vPercValue = vPercValue.replace(".", ",");
                 var vPerctext = vPercValue + "%";
                 vProgIndicator.setDisplayValue(vPerctext);
 

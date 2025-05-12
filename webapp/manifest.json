@@ -110,7 +110,7 @@
         },
         {
           "name": "Routecriacao",
-          "pattern": "criacao/{bukrs}/{recnnr}/{recntxt}/{partner}",
+          "pattern": "criacao/{bukrs}/{recnnr}/{partner}",
           "target": "TargetCriacao"
         }  
       ],
