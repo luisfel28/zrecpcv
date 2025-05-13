@@ -12,14 +12,8 @@ function (Controller, MessageToast) {
     return Controller.extend("fidelidademundial.com.zrecpcv.controller.contratos", {
         
         onInit: function () {
-
-            /* oFilterCompany.push("FS01");
-            oFilterCompany.push("FIIS"); */
-
-            sap.ui.getCore().AppContext = new Object(); // Initialize AppContext if it doesn't exist
-            sap.ui.getCore().AppContext.gTabCont = this.getView().byId("TabCont");
-            sap.ui.getCore().AppContext.gConfirmation = this.getView().byId("MsgConfirmation");
-
+            $.sap.gTabCont = this.getView().byId("TabCont");
+            $.sap.gConfirmation = this.getView().byId("MsgConfirmation");
         },
 
         handleContract: function (evt) {

@@ -74,7 +74,7 @@
                                 <OverflowToolbar style="Clear">
                                     <Title id="TabContListTitle" text="Contratos" titleStyle="H3" level="H3"/>
                                     <ToolbarSpacer/>
-                                    <Button text="Criar Contrato de Venda" type="Attention" width="250px" icon="sap-icon://SAP-icons-TNT/data" press="onCreateCont" class="sapUiSmallMarginBegin"></Button>
+                                    <!-- <Button text="Criar Contrato de Venda" type="Emphasized" width="250px" icon="sap-icon://SAP-icons-TNT/data" press="onCreateCont" class="sapUiSmallMarginBegin"></Button> -->
                                 </OverflowToolbar>
                             </t:extension>
                             <t:columns>
@@ -145,6 +145,11 @@
 						</t:Table>                            
                 </VBox>
             </HBox>
+            <HBox>     
+                <VBox class="sapUiMediumMarginBegin  sapUiSmallMarginTop">
+                    <Button text="Criar Contrato CPCV" type="Emphasized" width="250px" icon="sap-icon://SAP-icons-TNT/data" press="onCreateCont" class="sapUiSmallMarginBegin"></Button>                
+                </VBox>           
+            </HBox>         
             <HBox>
                 <VBox class="sapUiMediumMarginBegin  sapUiSmallMarginTop" id="pnlProgress" visible="true">
                     <HBox>

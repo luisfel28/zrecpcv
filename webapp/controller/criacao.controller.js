@@ -5,9 +5,9 @@ sap.ui.define([
 function (Controller, MessageToast) {
     "use strict";
 
-    var Filtro      = [];
-    var sBukrs      = "";
-    var sRecnnr     = "";
+    var Filtro          = [];
+    var sBukrs          = "";
+    var sRecnnr         = "";
 
     return Controller.extend("fidelidademundial.com.zrecpcv.controller.criacao", {
         
@@ -64,6 +64,20 @@ function (Controller, MessageToast) {
 
         },
 
+        handleContract: function (evt) {
+
+            // Empresa
+            var vBUKRS = evt.getSource().getBindingContext().getObject("bukrs");
+
+            // Contrato
+            var vCONT;
+            vCONT = evt.getSource().getProperty("text").toString();
+
+            var finalUrl = window.location.href.split("#")[0] + "#REContract-manageContract?CompanyCode="+vBUKRS+"&RealEstateContract="+vCONT+"&REContract="+vCONT+"&DynproNoFirstScreen=1";
+            sap.m.URLHelper.redirect(finalUrl, false);
+
+        },
+
         WriteData: function (results) {
 
             var oTable = this.getView().byId("TabConditions");
@@ -100,34 +114,6 @@ function (Controller, MessageToast) {
                 pattern: "dd/MM/yyyy"
             });
 
-            /// INÍCIO CONTRATO
-/*             var vLblDtIni = this.getView().byId("lblTitDtIni");
-            vDtIni = new Date(oresponse.data.Recnbeg);
-
-            if ( oresponse.data.Recnbeg != null )
-            { 
-                vLblDtIni.setText("Início Contrato (" + dateFormat.format(vDtIni)+")"); 
-
-                var vTxtDtIni = this.getView().byId("TxtDtIni");
-                vTxtDtIni.setDateValue(vDtIni);   
-                vTxtDtIni.setDisplayFormat("d/MM/y"); 
-            }    */         
-
-            /// FIM CONTRATO                
-/*             var vLblDtFim = this.getView().byId("lblTitDtFim");
-            vDtFim = new Date(oresponse.data.Recnend1st);            
-
-            if ( oresponse.data.Recnend1st != null )
-            { 
-
-                vLblDtFim.setText("Fim Contrato (" + dateFormat.format(vDtFim)+")");             
-
-                var vTxtDtFim = this.getView().byId("TxtDtFim");
-                vTxtDtFim.setDateValue(vDtFim);                        
-                vTxtDtFim.setDisplayFormat("d/MM/y");     
-
-            } */
-
         },   
 
         onCreateContCPCV: function () {
@@ -153,15 +139,31 @@ function (Controller, MessageToast) {
                     "Recnnr" :  vTabConditions.getContextByIndex(vCont).getObject().Recnnr,
                     "Condtype" :  vTabConditions.getContextByIndex(vCont).getObject().Condtype, 
                     "Condvalidfrom" :  vTabConditions.getContextByIndex(vCont).getObject().Condvalidfromcpcv,
-                    "Condpurposeext" :  vTabConditions.getContextByIndex(vCont).getObject().Condpurposeextcpcv
+                    "Condpurposeext" :  vTabConditions.getContextByIndex(vCont).getObject().Condpurposeextcpcv,
+                    "Distrule" :  vTabConditions.getContextByIndex(vCont).getObject().Distrulecpcv
                 };
                 oConditionsCPCV.push(aDadosConditions);
 
             }
 
+            // Dt Início Contrato
             var vDtIni = new Date(vTxtDtIni.getDateValue());
-            var vDtFim = new Date(vTxtDtFim.getDateValue());               
 
+            // Acerta UTC caso necessário
+            if ( vDtIni.getDate() != vDtIni.getUTCDate() )
+            {
+                vDtIni.setUTCDate(vDtIni.getDate());
+            }
+            
+            // Dt Fim Contrato
+            var vDtFim = new Date(vTxtDtFim.getDateValue()); 
+            
+            // Acerta UTC caso necessário
+            if ( vDtFim.getDate() != vDtFim.getUTCDate() )
+            {
+                vDtFim.setUTCDate(vDtFim.getDate());
+            }
+            
             // DADOS CONTRATO CPCV
             var aDadosContrato = {
                 "Bukrs" : sBukrs,
@@ -182,11 +184,13 @@ function (Controller, MessageToast) {
                     if ( vRecnnrContVenda != "" )
                     {
                     var mSuc = "Contrato de venda " + vBukrsContVenda + "/" + vRecnnrContVenda + " criado com sucesso!";
+                    
+                    // Atualiza tabela de Contratos
+                    $.sap.gTabCont.getBinding("rows").refresh();
 
-                    sap.ui.getCore().AppContext.gTabCont.getBinding("rows").refresh();
-
-                    sap.ui.getCore().AppContext.gConfirmation.setText(mSuc);
-                    sap.ui.getCore().AppContext.gConfirmation.setProperty("visible", true);
+                    // Preenche mensagem de confirmação
+                    $.sap.gConfirmation.setText(mSuc);
+                    $.sap.gConfirmation.setProperty("visible", true);
 
                     oRouter.navTo("Routecontratos");               
                     }
@@ -204,7 +208,7 @@ function (Controller, MessageToast) {
             
                  
 
-        }
+        }   
 
     });
 });

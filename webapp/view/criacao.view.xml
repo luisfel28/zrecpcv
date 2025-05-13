@@ -19,7 +19,7 @@
                     <HBox>
                         <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
                             <Label id="lblTitRecnnr" labelFor="lblRecnnr" text="Contrato" ></Label>
-                            <Label id="lblRecnnr" design="Bold"></Label>
+                            <Link id="lblRecnnr" press="handleContract" target="_blank"/>
                         </VBox>                  
                     </HBox>                   
                 </VBox>  
@@ -45,7 +45,7 @@
                                             'path': 'dadoscabec>/Recnbeg',
                                             'type': 'sap.ui.model.type.Date',
                                             'formatOptions': {
-                                                'pattern': 'dd.MM.yyyy',
+                                                'pattern': 'dd/MM/yyyy',
                                                 'UTC': true
                                             }
                                         }" placeholder=" " />
@@ -60,7 +60,7 @@
                                             'path': 'dadoscabec>/Recnend1st',
                                             'type': 'sap.ui.model.type.Date',
                                             'formatOptions': {
-                                                'pattern': 'dd.MM.yyyy',
+                                                'pattern': 'dd/MM/yyyy',
                                                 'UTC': true
                                             }
                                         }" placeholder=" " />
@@ -79,28 +79,47 @@
                                 </OverflowToolbar>
                             </t:extension>
                             <t:columns>
-                                <t:Column width="12rem" >
-									<Text text="Objeto de Cálculo"/>
+                                <t:Column width="14rem" >
+									<Text text="Objecto"/>
                                     <t:template>
-                                        <Label text="{Objnrcalc}" design="Bold" />
+                                        <Label text="{DescObj}" design="Bold" />
                                     </t:template>
 								</t:Column>
-                                <t:Column width="6rem" >
+                                <t:Column width="14rem" >
+									<Text text="Descrição"/>
+                                    <t:template>
+                                        <Label text="{Xobjgrp}" />
+                                    </t:template>
+								</t:Column>                                
+                                <t:Column width="5rem" >
 									<Text text="Tipo"/>
                                     <t:template>
                                         <Label text="{Condtype}" />
                                     </t:template>
 								</t:Column>
-                                <t:Column width="8rem" >
+                                <t:Column width="10rem" >
 									<Text text="Objetivo Reserva"/>
                                     <t:template>
-                                        <Label text="{Condpurposeext}" />
+                                        <Label text="{Xmcondpurposeext}" />
                                     </t:template>
-								</t:Column>                       
+								</t:Column>                 
+                                <t:Column width="12rem" >
+									<Text text="Norma Distr. Reserva"/>
+                                    <t:template>
+                                        <Label text="{Xmdistrule}" />
+                                    </t:template>
+								</t:Column>                                                       
                                 <t:Column width="10rem" >
 									<Text text="Válido Desde Reserva"/>
                                     <t:template>
-                                        <Label text="{ path: 'Condvalidfrom', type: 'sap.ui.model.odata.type.Date' }" />
+                                        <Label text="{ 
+                                            path: 'Condvalidfrom', 
+                                            type: 'sap.ui.model.odata.type.Date',
+                                            formatOptions: {
+                                                pattern: 'dd/MM/y',
+                                                UTC: true
+                                            }
+                                             }" />
                                     </t:template>
 								</t:Column>                                                                
                                 <t:Column width="14rem" >
@@ -113,7 +132,18 @@
                                             <core:ListItem text="{main>Xmcondpurposeext}" key="{main>Condpurposeext}" additionalText="{main>Condpurposeext}"/>
                                         </Select>                                                                
                                     </t:template> 
-								</t:Column>         
+								</t:Column>     
+                                <t:Column width="14rem" >
+									<Text text="Norma Dist. CPCV"/>
+                                     <t:template>
+                                        <Select id="CboNorma" 
+                                            showSecondaryValues= "true"
+                                            selectedKey="{Distrulecpcv}" 
+                                            items="{ path: 'main>/RecddistruleextSet', sorter: { path: 'main>Distruleext' } }" >
+                                            <core:ListItem text="{main>Xldistrule}" key="{main>Distruleext}" additionalText="{main>Distruleext}"/>
+                                        </Select>                                                                
+                                    </t:template> 
+								</t:Column>                                       
                                 <t:Column width="14rem" >
 									<Text text="Válido Desde CPCV"/>
                                      <t:template>
@@ -132,16 +162,6 @@
                                 <t:Column width="14rem" >
 									<Text text="Preço Unidade"/>
                                     <t:template>
-                                        <!-- <Label text="{Unitprice}" /> 
-                                        <Label text="{ 
-                                        parts:  [   'Unitprice',
-                                                    'Condcurr'
-                                                ],
-                                            type: 'CurrencyType',
-                                            formatOptions: {showMeasure: false, decimalSeparator: ',', groupingSeparator: '.'}
-                                        }"
-                                        
-                                         />-->
                                          <ObjectNumber
                                             number="{
                                                 parts:[{path:'Unitprice'},{path:'Condcurr'}],
@@ -154,12 +174,17 @@
 	                        </t:columns>
 						</t:Table>          
                 </VBox>
-            </HBox>                
+            </HBox>
+            <HBox>     
+                <VBox>
+                    <Button text="Finalizar criação do Contrato CPCV" type="Emphasized" width="250px" icon="sap-icon://SAP-icons-TNT/data" press="onCreateContCPCV" class="sapUiSmallMarginBegin"></Button>
+                </VBox>           
+            </HBox>
         </content>                    
-        <footer>
+<!--         <footer>
 			<Toolbar>
-				<Button text="Criar Contrato de Venda" type="Attention" width="250px" icon="sap-icon://SAP-icons-TNT/data" press="onCreateContCPCV" class="sapUiSmallMarginBegin"></Button>
+				<Button text="Criar Contrato de Venda" type="Emphasized" width="250px" icon="sap-icon://SAP-icons-TNT/data" press="onCreateContCPCV" class="sapUiSmallMarginBegin"></Button>
 			</Toolbar>
-		</footer>
+		</footer> -->
     </Page>
 </mvc:View>
