@@ -1,8 +1,9 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
+    "sap/m/MessageToast",
+    "sap/m/MessageBox"
 ],
-function (Controller, MessageToast) {
+function (Controller, MessageToast, MessageBox) {
     "use strict";
 
     var Filtro          = [];
@@ -196,7 +197,8 @@ function (Controller, MessageToast) {
                     }
                     else
                     {
-                        MessageToast.show("Erro na criação do contrato. Verifique as informações!");    
+                        //MessageToast.show("Erro na criação do contrato. Verifique as informações!");    
+                        MessageBox.error(oResponse.data.Msg);
                     }
 
                 },

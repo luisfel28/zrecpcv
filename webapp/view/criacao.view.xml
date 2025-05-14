@@ -97,20 +97,32 @@
                                         <Label text="{Condtype}" />
                                     </t:template>
 								</t:Column>
-                                <t:Column width="10rem" >
-									<Text text="Objetivo Reserva"/>
+                                <t:Column width="10rem" headerSpan="3,1">
+                                    <t:multiLabels>
+                                        <Label text="Reserva" textAlign="Center" design="Bold" width="100%"/>
+                                        <Label text="Objetivo" textAlign="Center" width="100%"/>
+                                    </t:multiLabels>
+									<!-- <Text text="Objetivo Reserva"/> -->
                                     <t:template>
                                         <Label text="{Xmcondpurposeext}" />
                                     </t:template>
 								</t:Column>                 
-                                <t:Column width="12rem" >
-									<Text text="Norma Distr. Reserva"/>
+                                <t:Column width="12rem" headerSpan="3,1">
+                                    <t:multiLabels>
+                                        <Label text="Reserva" textAlign="Center" design="Bold" width="100%"/>
+                                        <Label text="Norma Distribuição" textAlign="Center" width="100%"/>
+                                    </t:multiLabels>
+									<!-- <Text text="Norma Distr. Reserva"/> -->
                                     <t:template>
                                         <Label text="{Xmdistrule}" />
                                     </t:template>
 								</t:Column>                                                       
-                                <t:Column width="10rem" >
-									<Text text="Válido Desde Reserva"/>
+                                <t:Column width="10rem" headerSpan="3,1">
+                                    <t:multiLabels>
+                                        <Label text="Reserva" textAlign="Center" design="Bold" width="100%"/>
+                                        <Label text="Válido Desde" textAlign="Center" width="100%"/>
+                                    </t:multiLabels>                                
+									<!-- <Text text="Válido Desde Reserva"/> -->
                                     <t:template>
                                         <Label text="{ 
                                             path: 'Condvalidfrom', 
@@ -122,8 +134,12 @@
                                              }" />
                                     </t:template>
 								</t:Column>                                                                
-                                <t:Column width="14rem" >
-									<Text text="Objetivo CPCV"/>
+                                <t:Column width="14rem" headerSpan="3,1">
+                                    <t:multiLabels>
+                                        <Label text="CPCV" textAlign="Center" design="Bold" width="100%"/>
+                                        <Label text="Objetivo" textAlign="Center" width="100%"/>
+                                    </t:multiLabels>
+									<!-- <Text text="Objetivo CPCV"/> -->
                                      <t:template>
                                         <Select id="CboObjCond" 
                                             showSecondaryValues= "true"
@@ -133,8 +149,12 @@
                                         </Select>                                                                
                                     </t:template> 
 								</t:Column>     
-                                <t:Column width="14rem" >
-									<Text text="Norma Dist. CPCV"/>
+                                <t:Column width="14rem"  headerSpan="3,1">
+                                    <t:multiLabels>
+                                        <Label text="CPCV" textAlign="Center" design="Bold" width="100%"/>
+                                        <Label text="Norma Distribuição" textAlign="Center" width="100%"/>
+                                    </t:multiLabels>                                
+									<!-- <Text text="Norma Dist. CPCV"/> -->
                                      <t:template>
                                         <Select id="CboNorma" 
                                             showSecondaryValues= "true"
@@ -144,8 +164,12 @@
                                         </Select>                                                                
                                     </t:template> 
 								</t:Column>                                       
-                                <t:Column width="14rem" >
-									<Text text="Válido Desde CPCV"/>
+                                <t:Column width="14rem"  headerSpan="3,1">
+                                    <t:multiLabels>
+                                        <Label text="CPCV" textAlign="Center" design="Bold" width="100%"/>
+                                        <Label text="Válido Desde" textAlign="Center" width="100%"/>
+                                    </t:multiLabels>                                    
+									<!-- <Text text="Válido Desde CPCV"/> -->
                                      <t:template>
                                     <DatePicker
                                         id="lblDateFrom"
@@ -176,8 +200,8 @@
                 </VBox>
             </HBox>
             <HBox>     
-                <VBox>
-                    <Button text="Finalizar criação do Contrato CPCV" type="Emphasized" width="250px" icon="sap-icon://SAP-icons-TNT/data" press="onCreateContCPCV" class="sapUiSmallMarginBegin"></Button>
+                <VBox class="sapUiMediumMarginBegin  sapUiSmallMarginTop">
+                    <Button text="Submeter Criação do Contrato CPCV" type="Emphasized" width="350px" icon="sap-icon://complete" press="onCreateContCPCV" class="botaoAcao"></Button>
                 </VBox>           
             </HBox>
         </content>                    

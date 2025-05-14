@@ -146,17 +146,15 @@
                 </VBox>
             </HBox>
             <HBox>     
-                <VBox class="sapUiMediumMarginBegin  sapUiSmallMarginTop">
-                    <Button text="Criar Contrato CPCV" type="Emphasized" width="250px" icon="sap-icon://SAP-icons-TNT/data" press="onCreateCont" class="sapUiSmallMarginBegin"></Button>                
+                <VBox class="sapUiMediumMarginBegin  sapUiSmallMarginTop" width="500px">
+                    <Button class="botaoAcao" text="Criar Contrato CPCV" type="Emphasized" width="250px" icon="sap-icon://create" press="onCreateCont" ></Button>               
                 </VBox>           
-            </HBox>         
-            <HBox>
-                <VBox class="sapUiMediumMarginBegin  sapUiSmallMarginTop" id="pnlProgress" visible="true">
+                <VBox class="sapUiLargeMarginBegin  sapUiSmallMarginTop" id="pnlProgress" visible="true" alignContent="End" width="100%">
                     <HBox>
-                        <VBox>
+                        <VBox class="sapUiLargeMarginBegin  sapUiSmallMarginTop">
                             <Label text="Contr. Vendas / Contr. Reservas" design="Bold" ></Label>
                         </VBox>
-                        <VBox>
+                        <VBox class="sapUiSmallMarginTop">
                             <ProgressIndicator
                                 id="ProgIndicator"
                                 class="sapUiMediumMarginBegin sapUiSmallMarginBottom"
