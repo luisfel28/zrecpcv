@@ -155,7 +155,7 @@
                 <VBox class="sapUiLargeMarginBegin  sapUiSmallMarginTop" id="pnlProgress" visible="true" alignContent="End" width="100%">
                     <HBox>
                         <VBox class="sapUiLargeMarginBegin  sapUiSmallMarginTop">
-                            <Label text="Contr. Vendas / Contr. Reservas" design="Bold" ></Label>
+                            <Label id="lblProgresso" design="Bold" ></Label>
                         </VBox>
                         <VBox class="sapUiSmallMarginTop">
                             <ProgressIndicator

@@ -156,7 +156,7 @@ function (Controller, MessageToast) {
                 }
                 else 
                 {
-                    MessageToast.show("Contrato de venda já criado!");
+                    MessageToast.show("Contrato CPCV já criado para essa Reserva!");
                 }
 
             }
@@ -179,6 +179,7 @@ function (Controller, MessageToast) {
 
                 // Ajusta Progress Indicator
                 var vProgIndicator   = this.getView().byId("ProgIndicator"),
+                    vLblProgresso    = this.getView().byId("lblProgresso"),
                     vCPCV   = 0;
 
                 for (var vCont = 0; vCont < vCountRegs; vCont++ )
@@ -199,6 +200,8 @@ function (Controller, MessageToast) {
                 vPercValue = vPercValue.replace(".", ",");
                 var vPerctext = vPercValue + "%";
                 vProgIndicator.setDisplayValue(vPerctext);
+
+                vLblProgresso.setText("Contr. Vendas ("+vCPCV+") / Contr. Reservas ("+vCountRegs+")");
 
         },
 
