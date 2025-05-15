@@ -33,7 +33,8 @@
                     <HBox>
                         <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
                             <Label id="lblTitPartner" labelFor="lblRecnnr" text="Parceiro" ></Label>
-                            <Label id="lblPartner" design="Bold"></Label>
+                            <Link id="lblPartner" press="handleBP" target="_blank"/>
+                            <!-- <Label id="lblPartner" design="Bold"></Label> -->
                         </VBox>                  
                     </HBox>                   
                 </VBox>                  

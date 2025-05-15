@@ -14,6 +14,11 @@ function (Controller, MessageToast) {
         onInit: function () {
             $.sap.gTabCont = this.getView().byId("TabCont");
             $.sap.gConfirmation = this.getView().byId("MsgConfirmation");
+
+            var vImage = this.getView().byId("imgLogo");
+            var UrlAmbiente = window.location.href.split("/")[2]
+            vImage.setProperty("src", "https://"+UrlAmbiente+"/sap/bc/ui5_ui5/sap/zre_cpcv/img/logo_fid_app.jpg");
+
         },
 
         handleContract: function (evt) {
@@ -30,11 +35,21 @@ function (Controller, MessageToast) {
 
         },
 
+        handleBP: function (evt) {
+
+            // Business Partner
+            var vBP = evt.getSource().getProperty("text").toString();
+
+            var finalUrl = window.location.href.split("#")[0] + "#BusinessPartner-display?BusinessPartner="+vBP+"&sap-ach=FIN-FSCM-TRM";
+            sap.m.URLHelper.redirect(finalUrl, false);
+
+        },        
+
         OnSearchCont: function () {
 
             var vTab = this.getView().byId("TabCont");
 
-            sap.ui.getCore().AppContext.gConfirmation.setProperty("visible", false);
+            $.sap.gConfirmation.setProperty("visible", false);
 
             ///////////////////////////////////////////////////////////////////
             oFilters = [];
@@ -119,6 +134,8 @@ function (Controller, MessageToast) {
             var vTblContratos       = this.getView().byId("TabCont"),
                 vMsgConfirmation    = this.getView().byId("MsgConfirmation"),
                 vRecnTxt            = "-";
+
+            $.sap.gConfirmation.setProperty("visible", false);                
 
             if ( vTblContratos.getSelectedIndex() != -1 )
             {

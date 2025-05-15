@@ -68,13 +68,23 @@ function (Controller, MessageToast, MessageBox) {
         handleContract: function (evt) {
 
             // Empresa
-            var vBUKRS = evt.getSource().getBindingContext().getObject("bukrs");
+            var vBUKRS = this.getView().byId("lblBukrs").getText().toString();
 
             // Contrato
             var vCONT;
             vCONT = evt.getSource().getProperty("text").toString();
 
             var finalUrl = window.location.href.split("#")[0] + "#REContract-manageContract?CompanyCode="+vBUKRS+"&RealEstateContract="+vCONT+"&REContract="+vCONT+"&DynproNoFirstScreen=1";
+            sap.m.URLHelper.redirect(finalUrl, false);
+
+        },
+
+        handleBP: function (evt) {
+
+            // Business Partner
+            var vBP = evt.getSource().getProperty("text").toString();
+
+            var finalUrl = window.location.href.split("#")[0] + "#BusinessPartner-display?BusinessPartner="+vBP+"&sap-ach=FIN-FSCM-TRM";
             sap.m.URLHelper.redirect(finalUrl, false);
 
         },

@@ -54,16 +54,19 @@
                         </VBox>
                     </HBox>
                 </VBox>                      
-                <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTop" >
+                <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTop" width="700px">
                     <HBox>
                         <VBox>
                             <Button text="Filtrar" type="Emphasized" width="150px" icon="sap-icon://inspection" press="OnSearchCont" class="sapUiSmallMarginBegin sapUiSmallMarginTop"></Button>
                         </VBox>
                     </HBox>
-                </VBox>                  
+                </VBox>
+                <VBox class="sapUiMediumMarginBegin  sapUiMediumMarginTop" >
+                    <Image id="imgLogo" width="350px" decorative="false" />                
+                </VBox>                                   
             </HBox>                                                        
             <HBox>
-                <VBox class="sapUiMediumMarginBegin " id="pnlCont" visible="true">
+                <VBox class="sapUiMediumMarginBegin sapUiMediumMarginEnd" id="pnlCont" visible="true">
                         <t:Table class="sapUiMediumMarginTop" enableColumnFreeze="true" enableSelectAll="false" fixedColumnCount="3" enableBusyIndicator="true" visibleRowCount="15" alternateRowColors="true" selectionMode="Single" 
                         showNoData="false" id="TabCont" selectionBehavior="RowOnly"
                             rows="{ path:'/ZI_CONTRATOS_RESERVAS',
@@ -120,11 +123,11 @@
                                 <t:Column width="10rem" sortProperty="partner">
 									<Text text="Parceiro"/>
                                     <t:template>
-                                        <Label text="{partner}" />
+                                        <Link text="{partner}" press="handleBP" target="_blank"/>
                                     </t:template>
 								</t:Column>                                                                
                                 <t:Column width="10rem" sortProperty="recnnrcpcv">
-									<Text text="Contrato Venda"/>
+									<Text text="Contrato CPCV"/>
                                     <t:template>
                                         <Link text="{recnnrcpcv}" press="handleContract" target="_blank"/>
                                     </t:template>
