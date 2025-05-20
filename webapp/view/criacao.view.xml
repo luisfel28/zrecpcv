@@ -5,15 +5,15 @@
     xmlns="sap.m">
     <Page id="pagecri" title="{i18n>title}">
         <content>
-            <HBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
-                <Title level="H4" text="Dados Reserva" titleStyle="H4" />
-            </HBox>
             <HBox>
                 <VBox>
+                    <HBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
+                        <Title level="H4" text="Dados Reserva" titleStyle="H4" class="borderTit" />
+                    </HBox>
                     <HBox>
                         <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
                             <Label id="lblTitBukrs" labelFor="lblBukrs" text="Empresa" ></Label>
-                            <Label id="lblBukrs" design="Bold" labelFor="" ></Label>
+                            <Label id="lblBukrs" design="Bold"></Label>
                         </VBox>                  
                     </HBox>                        
                     <HBox>
@@ -23,27 +23,57 @@
                         </VBox>                  
                     </HBox>                   
                 </VBox>  
-                <VBox class="sapUiMediumMarginBegin">
+                <VBox  class="spaceTitheader">
                     <HBox>
                         <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
-                            <Label id="lblTitRecnTxt" labelFor="lblBukrs" text="Denominação" ></Label>
-                            <Label id="lblRecnTxt" design="Bold" labelFor="" ></Label>
+                            <Label id="lblTitRecnTxt" labelFor="lblRecnTxt" text="Denominação" ></Label>
+                            <Label id="lblRecnTxt" design="Bold"></Label>
                         </VBox>                  
                     </HBox>                        
                     <HBox>
                         <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
-                            <Label id="lblTitPartner" labelFor="lblRecnnr" text="Parceiro" ></Label>
+                            <Label id="lblTitPartner" labelFor="lblPartner" text="Parceiro" ></Label>
                             <Link id="lblPartner" press="handleBP" target="_blank"/>
-                            <!-- <Label id="lblPartner" design="Bold"></Label> -->
                         </VBox>                  
                     </HBox>                   
                 </VBox>                  
-                <VBox class="sapUiMediumMarginBegin">
+                <VBox class="spaceTitheader">
+                    <HBox class="sapUiMediumMarginBegin">
+                        <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
+                            <Label id="lblTitDtIniReserva" labelFor="lblValDtIniReserva" text="Início Contrato" ></Label>
+                            <Label id="lblValDtIniReserva" text="{
+                                            'path': 'dadoscabec>/Recnbeg',
+                                            'type': 'sap.ui.model.type.Date',
+                                            'formatOptions': {
+                                                'pattern': 'dd/MM/yyyy',
+                                                'UTC': true
+                                            }
+                                        }" design="Bold"></Label>
+                        </VBox>                  
+                    </HBox>                        
+                    <HBox class="sapUiMediumMarginBegin">
+                        <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
+                            <Label id="lblTitDtFimReserva" labelFor="lblValDtFimReserva" text="Fim Contrato" ></Label>
+                            <Label id="lblValDtFimReserva" text="{
+                                            'path': 'dadoscabec>/Recnend1st',
+                                            'type': 'sap.ui.model.type.Date',
+                                            'formatOptions': {
+                                                'pattern': 'dd/MM/yyyy',
+                                                'UTC': true
+                                            }
+                                        }" design="Bold" ></Label>
+                        </VBox>                  
+                    </HBox>                   
+                </VBox>                                          
+                <VBox class="spaceTitLeftCPCV">
+                    <HBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
+                        <Title level="H4" text="Dados CPCV" titleStyle="H4" class="borderTit"/>
+                    </HBox>              
                     <HBox>
                         <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
-                            <Label id="lblTitDtIni" labelFor="lblBukrs" text="Início Contrato" ></Label>
-                            <DatePicker id="TxtDtIni" value="{
-                                            'path': 'dadoscabec>/Recnbeg',
+                            <Label id="lblTitDtIni" labelFor="TxtDtIni" text="Início Contrato" ></Label>
+                            <DatePicker id="TxtDtIni" required="true" value="{
+                                            'path': 'dadoscabec>/Recnbegcpcv',
                                             'type': 'sap.ui.model.type.Date',
                                             'formatOptions': {
                                                 'pattern': 'dd/MM/yyyy',
@@ -51,14 +81,14 @@
                                             }
                                         }" placeholder=" " />
                         </VBox>                  
-                    </HBox>                        
-                </VBox>                                  
-                <VBox class="sapUiMediumMarginBegin">
+                    </HBox>    
+                </VBox>                        
+                <VBox class="spaceTitheader">                                        
                     <HBox>
                         <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
-                            <Label id="lblTitDtFim" labelFor="lblRecnnr" text="Fim Contrato" ></Label>
+                            <Label id="lblTitDtFim" labelFor="TxtDtFim" text="Fim Contrato" ></Label>
                             <DatePicker id="TxtDtFim" value="{
-                                            'path': 'dadoscabec>/Recnend1st',
+                                            'path': 'dadoscabec>/Recnend1stcpcv',
                                             'type': 'sap.ui.model.type.Date',
                                             'formatOptions': {
                                                 'pattern': 'dd/MM/yyyy',

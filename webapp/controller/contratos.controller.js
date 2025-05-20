@@ -75,6 +75,7 @@ function (Controller, MessageToast) {
                 if ( vStatusVal == "OK" )
                 { 
                     var oTabFilter = new sap.ui.model.Filter("recnnrcpcv", sap.ui.model.FilterOperator.NE, null );
+                    var oTabFilter = new sap.ui.model.Filter("recnnrcpcv", sap.ui.model.FilterOperator.NE, "" );
                 }
                 else
                 {   

@@ -108,22 +108,28 @@ function (Controller, MessageToast, MessageBox) {
             var oView = this.getView();
             oView.setModel(oModel, "dadoscabec");
             
-
-            var vRecnTxt    = oresponse.data.Recntxt,
-            vDtIni          , 
-            vDtFim          ;                    
-
-            var vLblRecnTxt = this.getView().byId("lblRecnTxt");
-
             /// DENOMINAÇÃO CONTRATO
+            var vLblRecnTxt = this.getView().byId("lblRecnTxt");
+            var vRecnTxt    = oresponse.data.Recntxt;                    
+
             if ( vRecnTxt == "" )
             { vRecnTxt = "-" }
 
             vLblRecnTxt.setText(vRecnTxt);
 
-            var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+/*             var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
                 pattern: "dd/MM/yyyy"
-            });
+            }); */
+
+            /// FIM CONTRATO
+            var vLblFimCont = this.getView().byId("lblValDtFimReserva");
+            var vDtFimCont    = oresponse.data.Recnend1stcpcv;      
+
+            if ( vDtFimCont == null )
+                { 
+                    vDtFimCont = "-" 
+                    vLblFimCont.setText(vDtFimCont);
+                }            
 
         },   
 
@@ -161,19 +167,22 @@ function (Controller, MessageToast, MessageBox) {
             var vDtIni = new Date(vTxtDtIni.getDateValue());
 
             // Acerta UTC caso necessário
-            if ( vDtIni.getDate() != vDtIni.getUTCDate() )
+/*             if ( vDtIni.getDate() != vDtIni.getUTCDate() )
             {
                 vDtIni.setUTCDate(vDtIni.getDate());
-            }
+            } */
             
             // Dt Fim Contrato
             var vDtFim = new Date(vTxtDtFim.getDateValue()); 
-            
+
             // Acerta UTC caso necessário
-            if ( vDtFim.getDate() != vDtFim.getUTCDate() )
+/*              if ( vDtFim.getDate() != vDtFim.getUTCDate() )
             {
-                vDtFim.setUTCDate(vDtFim.getDate());
-            }
+                //vDtFim.setUTCDate(vDtFim.getDate());
+                vDtFim.setUTCDate(vDtFim.getUTCDate());
+            } */
+
+
             
             // DADOS CONTRATO CPCV
             var aDadosContrato = {
@@ -213,7 +222,8 @@ function (Controller, MessageToast, MessageBox) {
 
                 },
                 error: function (oError) {
-                    MessageToast.show(oError.responseText);
+                    //MessageToast.show(oError.responseText);
+                    MessageToast.show(oResponse.data.Msg);
                 }
             } );             
 

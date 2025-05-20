@@ -138,7 +138,7 @@
                                         <Label text="{created_by}" />
                                     </t:template>
 								</t:Column>                                                                
-                                <t:Column width="14rem" >
+                                <t:Column width="14rem" sortProperty="created_at">
 									<Text text="Criado em"/>
                                     <t:template>
                                         <Label text="{ path: 'created_at', type: 'sap.ui.model.odata.type.DateTime' }" />
