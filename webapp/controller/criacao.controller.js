@@ -117,6 +117,15 @@ function (Controller, MessageToast, MessageBox) {
 
             vLblRecnTxt.setText(vRecnTxt);
 
+            /// NOME PARCEIRO
+            var vLblDescPartnerTxt = this.getView().byId("lblTitDescPartner");
+            var vDescPartnerTxt    = oresponse.data.DescPartner;                    
+
+            if ( vDescPartnerTxt == "" )
+            { vDescPartnerTxt = "-" }
+
+            vLblDescPartnerTxt.setText(vDescPartnerTxt);
+
 /*             var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
                 pattern: "dd/MM/yyyy"
             }); */

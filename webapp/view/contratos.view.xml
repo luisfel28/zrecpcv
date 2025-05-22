@@ -81,7 +81,7 @@
                                 </OverflowToolbar>
                             </t:extension>
                             <t:columns>
-                                <t:Column width="10rem" hAlign="Center" >
+                                <t:Column width="8rem" hAlign="Center" >
 									<Text text="Status"/>
                                     <t:template>
                                         <ObjectStatus
@@ -96,7 +96,7 @@
                                         <Label text="{bukrs}" design="Bold" />
                                     </t:template>
 								</t:Column>
-                                <t:Column width="10rem" sortProperty="recnnr">
+                                <t:Column width="8rem" sortProperty="recnnr">
 									<Text text="Contrato Reserva"/>
                                     <t:template>
                                         <Link text="{recnnr}" press="handleContract" target="_blank"/>
@@ -120,19 +120,25 @@
                                         <Label text="{ path: 'recnend1st', type: 'sap.ui.model.odata.type.Date' }" />                                        
                                     </t:template>
 								</t:Column>                                                                                 
-                                <t:Column width="10rem" sortProperty="partner">
+                                <t:Column width="8rem" sortProperty="partner">
 									<Text text="Parceiro"/>
                                     <t:template>
                                         <Link text="{partner}" press="handleBP" target="_blank"/>
                                     </t:template>
-								</t:Column>                                                                
-                                <t:Column width="10rem" sortProperty="recnnrcpcv">
+								</t:Column>                                                  
+                                <t:Column width="22rem" sortProperty="DescPartner">
+									<Text text="Nome Parceiro"/>
+                                    <t:template>
+                                        <Label text="{desc_partner}" />
+                                    </t:template>
+								</t:Column>                                                                                                
+                                <t:Column width="8rem" sortProperty="recnnrcpcv">
 									<Text text="Contrato CPCV"/>
                                     <t:template>
                                         <Link text="{recnnrcpcv}" press="handleContract" target="_blank"/>
                                     </t:template>
 								</t:Column>                                                                
-                                <t:Column width="14rem" >
+                                <t:Column width="8rem" >
 									<Text text="Criado por"/>
                                     <t:template>
                                         <Label text="{created_by}" />

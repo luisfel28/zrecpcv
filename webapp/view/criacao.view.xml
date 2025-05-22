@@ -34,6 +34,7 @@
                         <VBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
                             <Label id="lblTitPartner" labelFor="lblPartner" text="Parceiro" ></Label>
                             <Link id="lblPartner" press="handleBP" target="_blank"/>
+                            <Label id="lblTitDescPartner" labelFor="lblDescPartner" text="DescParceiro" ></Label>
                         </VBox>                  
                     </HBox>                   
                 </VBox>                  
@@ -122,10 +123,10 @@
                                         <Label text="{Xobjgrp}" />
                                     </t:template>
 								</t:Column>                                
-                                <t:Column width="5rem" >
+                                <t:Column width="12rem" >
 									<Text text="Tipo"/>
                                     <t:template>
-                                        <Label text="{Condtype}" />
+                                        <Label text="{Condtype} {Xcondtypem}"  />
                                     </t:template>
 								</t:Column>
                                 <t:Column width="10rem" headerSpan="3,1">
@@ -214,7 +215,7 @@
                                         }"/>
                                     </t:template>
 								</t:Column>         
-                                <t:Column width="14rem" >
+                                <t:Column width="8rem" >
 									<Text text="Preço Unidade"/>
                                     <t:template>
                                          <ObjectNumber
