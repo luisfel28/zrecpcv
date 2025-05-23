@@ -69,23 +69,22 @@ function (Controller, MessageToast) {
             /// Status
             var vRadioStatus = this.getView().byId("rbgSTATUS");
             var vStatusVal = vRadioStatus.getSelectedButton().getText();
+            var oTabFilter = new sap.ui.model.Filter();
 
             if ( vStatusVal != "Todos" )
             {
                 if ( vStatusVal == "OK" )
                 { 
-                    var oTabFilter = new sap.ui.model.Filter("recnnrcpcv", sap.ui.model.FilterOperator.NE, null );
-                    var oTabFilter = new sap.ui.model.Filter("recnnrcpcv", sap.ui.model.FilterOperator.NE, "" );
+                    oTabFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.EQ, "OK" );
                 }
                 else
                 {   
-                    var oTabFilter = new sap.ui.model.Filter("recnnrcpcv", sap.ui.model.FilterOperator.EQ, null );
+                    oTabFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.EQ, "PEND" );
                 }
 
-                
                 oFilters.push(oTabFilter);
-            }
-            ;            
+
+            };            
 
             ///////////////////////////////////////////////////////////////////
 
